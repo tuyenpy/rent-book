@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,12 +21,19 @@ app.use(express.static('publics'));
 //body-Parser
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.get('/', (req, res) => {
-    res.render('./index');
-});
-
-//use route
 
 
+//connect to Cluster MongoDB Atlas
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+ .then( _ => console.log('Database connected!'))
+ .then( _ => start(PORT))
+ .catch(({message}) => console.log(message));
 
-app.listen(PORT, () => { console.log(`App is listening at ${PORT}`) });
+function start(PORT) {
+    app.listen(PORT, () => { 
+        console.log(`App is listening at ${PORT}`) 
+    });
+}
