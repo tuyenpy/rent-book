@@ -1,0 +1,24 @@
+extends ../layout
+block content
+ h3 Sign up
+ form(action="/user/create" method="POST" enctype="multipart/form-data")
+  label(for="name") Name
+  br
+  input(type="text" id="name" name="name" value=name&&name)
+  br
+  label(for="phone") Phone
+  br
+  input(type="text" id="phone" name="phone" value=phone&&phone)
+  br
+  label(for="email") Email
+  br
+  input(type="email" id="email" name="email" value=email&&email)
+  br
+  label(for="password") Password
+  br
+  input(type="password" id="password" name="password" value=password&&password)
+  br
+  label(for="avatar")
+  input(type="file" id="avatar" name="avatar")
+  br
+  button(type="submit") Sign up

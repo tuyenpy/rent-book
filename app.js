@@ -22,6 +22,13 @@ app.use(express.static('publics'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+//index Hompage
+app.get('/', (req, res) => {
+    res.render('./index');
+})
+
+//user route
+app.use('/user', require('./route/user.route'));
 
 //connect to Cluster MongoDB Atlas
 mongoose.connect(process.env.MONGO_URL, {
