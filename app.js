@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000;
 
+//DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` without the `useFindAndModify` option set to false are deprecated. See: https://mongoosejs.com/docs/deprecations.html#findandmodify
+mongoose.set('useFindAndModify', false);
+
 //Pug - set template engine
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -29,12 +32,13 @@ app.use(findUser);
 //index Hompage
 app.get('/', (req, res) => {
     let user = res.locals.user;
-    res.render('./layout', {user});
+    res.render('./layout', { user });
 })
 
 //user route
 app.use('/user', require('./route/user.route'));
 app.use('/book', require('./route/book.route'));
+
 
 //connect to Cluster MongoDB Atlas
 mongoose.connect(process.env.MONGO_URL, {

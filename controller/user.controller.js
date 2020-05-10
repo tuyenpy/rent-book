@@ -23,7 +23,7 @@ module.exports.postCreate = async (req, res) => {
     let user = new User({ name, phone, email, password, avatar });
 
     user.save()
-        .then(_ => console.log('User created'))
+        .then()
         .catch(({ message }) => console.log(message));
 
     res.redirect('/');
