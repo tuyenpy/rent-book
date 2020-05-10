@@ -35,6 +35,11 @@ module.exports.login = (req, res) => {
 }
 
 module.exports.postLogin = (req, res) => {
+    res.redirect('/user/profile');
+}
+
+//profile
+module.exports.profile = (req, res) => {
     let user = res.locals.user;
-    res.render('./user/profile', {user});    
+    res.render('./user/profile', {user});
 }

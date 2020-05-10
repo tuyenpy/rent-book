@@ -22,9 +22,14 @@ app.use(express.static('publics'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+//Pass the user into each request
+//This way. Poor performance, needs improvement in the future
+app.use(findUser);
+
 //index Hompage
 app.get('/', (req, res) => {
-    res.render('./index');
+    let user = res.locals.user;
+    res.render('./layout', {user});
 })
 
 //user route
@@ -35,12 +40,24 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
- .then( _ => console.log('Database connected!'))
- .then( _ => start(PORT))
- .catch(({message}) => console.log(message));
+    .then(_ => console.log('Database connected!'))
+    .then(_ => start(PORT))
+    .catch(({ message }) => console.log(message));
 
 function start(PORT) {
-    app.listen(PORT, () => { 
-        console.log(`App is listening at ${PORT}`) 
+    app.listen(PORT, () => {
+        console.log(`App is listening at ${PORT}`)
     });
+}
+
+//find user
+async function findUser(req, res, next) {
+    let userID = req.signedCookies.userID;
+    //userID exist
+    if (userID) {
+        let User = await require('./model/user.model');
+        let user = await User.findOne({ _id: userID });
+        res.locals.user = user;
+    }
+    next();
 }

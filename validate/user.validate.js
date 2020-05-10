@@ -52,8 +52,25 @@ module.exports.login = async (req, res, next) => {
         errors.push("Password wrong!")
         res.render('./user/login', { errors });
     } else {
-        res.cookie('userID', user._id);
-        res.locals.user = user;
+        res.cookie('userID', user._id, {signed: true});
+        next();
+    }
+}
+
+module.exports.auth = async (req, res, next) => {
+    let userID = req.signedCookies.userID;
+    let user;
+
+    //userID does not exist
+    if (!userID) {
+        res.redirect('/user/login');
+    }
+    //userID exist
+    user = await User.findOne({_id: userID});
+    //user does not exist
+    if (!user.name) {
+        res.redirect('/user/login');
+    } else {
         next();
     }
 }
