@@ -1,0 +1,14 @@
+extends ../layout.pug
+block content
+ ul
+  li
+   img(src=user.avatar, alt=user.name, style="width: 40px; height: 40px; border-radius: 50%")
+  li
+   span Name:&nbsp;
+   span=user.name
+  li
+   span Phone:&nbsp;
+   span=user.phone
+  li
+   span Email:&nbsp;
+   span=user.email

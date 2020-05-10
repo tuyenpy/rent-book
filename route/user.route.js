@@ -7,6 +7,10 @@ const validate = require('../validate/user.validate');
 
 //create user
 router.get('/create', controller.create);
-router.post('/create', validate.create, upload.single('avatar'), controller.postCreate);
+router.post('/create', upload.single('avatar'), validate.create, controller.postCreate);
+
+//login
+router.get('/login', controller.login);
+router.post('/login', validate.login, controller.postLogin);
 
 module.exports = router;
