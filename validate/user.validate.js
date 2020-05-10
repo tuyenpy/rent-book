@@ -1,6 +1,7 @@
 const User = require('../model/user.model');
 const { comparePassword } = require('../config/bcrypt');
 
+//validate create user
 module.exports.create = (req, res, next) => {
     let errors = [];
     // name contains only characters a-zA-Z and max 10 char
@@ -30,7 +31,7 @@ module.exports.create = (req, res, next) => {
         next();
     }
 }
-
+// validate login
 module.exports.login = async (req, res, next) => {
     let errors = [];
     let { email, password } = req.body;
@@ -57,6 +58,7 @@ module.exports.login = async (req, res, next) => {
     }
 }
 
+//validate user authencation
 module.exports.auth = async (req, res, next) => {
     let userID = req.signedCookies.userID;
     let user;

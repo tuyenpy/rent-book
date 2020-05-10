@@ -1,0 +1,12 @@
+extends ../layout.pug
+block content
+ .row.row-cols-1.row-cols-md-3
+  if books
+   each book in books
+    .col.mb-4
+     .card.h-100
+       img.card-img-top(src='...', alt='...')
+       .card-body
+         h5.card-title=book.title
+         p.card-text=book.description
+         a.btn.btn-primary(href=`/book/addtocart/${book._id}`) Add to cart

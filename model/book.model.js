@@ -1,7 +1,13 @@
 const {Schema, model} = require('mongoose');
 const bookSchema = new Schema({
-    title: String,
-    description: String
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    }
 });
 
 const Book = model('Book', bookSchema );
