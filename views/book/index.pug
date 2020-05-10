@@ -5,8 +5,28 @@ block content
    each book in books
     .col.mb-4
      .card.h-100
-       img.card-img-top(src='...', alt='...')
+       img.card-img-top(src=book.image, alt='...')
        .card-body
          h5.card-title=book.title
          p.card-text=book.description
-         a.btn.btn-primary(href=`/book/addtocart/${book._id}`) Add to cart
+         p=book.author
+         p=book.price
+         a.btn.btn-primary(href=`/book?addtocart=${book._id}`) Add to cart
+ nav(aria-label='Page navigation example')
+  - var n = 1;
+  ul.pagination
+    if page == 1
+      li.page-item
+        a.page-link(href=`/book?page=numPage`) Previous
+    else
+      li.page-item
+        a.page-link(href=`/book?page=${page - 1}`) Previous    
+    while n <= numPage
+      li.page-item
+        a.page-link(href=`/book?page=${n}`)=n++
+    if page == numPage
+      li.page-item
+        a.page-link(href=`/book?page=0`) Next
+    else
+      li.page-item
+        a.page-link(href=`/book?page=${page + 1}`) Next
