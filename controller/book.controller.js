@@ -22,9 +22,11 @@ module.exports.index = async (req, res) => {
     let n = (page - 1) * perPage;
     //Ending at item -1
     let m = page * perPage;
-    if(bookID) {
-        book = await Book.findOne({_id: bookID});
-        user.cart.push(book);
+    //Get information about the book
+    book = bookID && await Book.findOne({ _id: bookID });
+    //If the existing book_id is added to the cart
+    if (book) {
+        user.cart.push(book._id);
         User.findOneAndUpdate({
             _id: user._id
         }, {
@@ -32,10 +34,9 @@ module.exports.index = async (req, res) => {
         }, {
             new: true
         })
-          .then()
-          .catch(err => console.log(err))
+            .then()
+            .catch(err => console.log(err))
     }
-
     res.render('./book/index', {
         books: books.slice(n, m),
         numPage: numPage,

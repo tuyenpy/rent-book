@@ -1,0 +1,23 @@
+extends ../layout.pug
+block content
+ a.btn.btn-primary(href="/cart?p=reset") Delete all books
+ table.table.mt-5
+  thead
+    tr
+      th(scope='col') #
+      th(scope='col') Image
+      th(scope='col') Title
+      th(scope='col') Description
+      th(scope='col') Author
+      th(scope='col') Price
+  tbody
+    if books
+     each book in books
+      tr
+       th(scope='row')=book._id
+       td
+        img(src=book.image, alt="", style="width: 50px; height: 50px")
+       td=book.title
+       td=book.description
+       td=book.author
+       td=book.price
