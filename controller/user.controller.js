@@ -43,3 +43,33 @@ module.exports.profile = (req, res) => {
     let user = res.locals.user;
     res.render('./user/profile', {user});
 }
+
+//update profile
+module.exports.edit = (req, res) => {
+    res.render('./user/edit');
+}
+
+module.exports.update = async (req, res) => {
+    let user = res.locals.user;
+    let {name, phone, email, password} = req.body;
+    let newUser = {};
+    //If you change your avatar, upload it to cloudinary
+    let avatar = req.file && await uploadCloudinary(req.file.path);
+    //create info to update
+    if (name) {newUser.name = name};
+    if (phone) {newUser.phone = phone};
+    if (email) {newUser.email = email};
+    if (password) {newUser.password = password};
+    if (avatar) {newUser.avatar = avatar};
+    //Search users and updates
+    User.findOneAndUpdate({
+        _id: user._id
+    }, {
+        ...newUser
+    }, {
+        new: true
+    })
+      .then()
+      .catch(err => console.log(err));
+    res.render('./user/profile');
+}

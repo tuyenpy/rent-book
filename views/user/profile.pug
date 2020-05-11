@@ -1,14 +1,16 @@
 extends ../layout.pug
 block content
- ul
-  li
+ ul.list-group.mb-2.mt-2
+  li.list-group-item
+   span Avatar: 
    img(src=user.avatar, alt=user.name, style="width: 40px; height: 40px; border-radius: 50%")
-  li
+  li.list-group-item
    span Name:&nbsp;
    span=user.name
-  li
+  li.list-group-item
    span Phone:&nbsp;
    span=user.phone
-  li
+  li.list-group-item
    span Email:&nbsp;
    span=user.email
+ a.btn.btn-primary(href="/user/profile/edit") Update profile

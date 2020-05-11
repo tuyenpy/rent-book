@@ -16,4 +16,8 @@ router.post('/login', validate.login, controller.postLogin);
 //profile
 router.get('/profile', validate.auth, controller.profile);
 
+//update profile
+router.get('/profile/edit', controller.edit);
+router.post('/profile/update', upload.single('avatar'), controller.update);
+
 module.exports = router;

@@ -6,23 +6,19 @@ block content
    .alert.alert-warning
     p=error
  form(action="/user/create" method="POST" enctype="multipart/form-data")
-  label(for="name") Name
-  br
-  input(type="text" id="name" name="name" value=name&&name required)
-  br
-  label(for="phone") Phone
-  br
-  input(type="text" id="phone" name="phone" value=phone&&phone required)
-  br
-  label(for="email") Email
-  br
-  input(type="email" id="email" name="email" value=email&&email required)
-  br
-  label(for="password") Password
-  br
-  input(type="password" id="password" name="password" value=password&&password required)
-  br
-  label(for="avatar")
-  input(type="file" id="avatar" name="avatar")
-  br
-  button(type="submit") Sign up
+  .form-group
+   label(for="name") Name
+   input.form-control(type="text" id="name" name="name" value=name&&name required)
+  .form-group
+   label(for="phone") Phone
+   input.form-control(type="text" id="phone" name="phone" value=phone&&phone required)
+  .form-group
+   label(for="email") Email
+   input.form-control(type="email" id="email" name="email" value=email&&email required)
+  .form-group
+   label(for="password") Password
+   input.form-control(type="password" id="password" name="password" value=password&&password required)
+  .form-group
+   label(for="avatar") Avatar
+   input.form-control-file(type="file" id="avatar" name="avatar")
+  button.btn.btn-primary(type="submit") Create

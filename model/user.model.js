@@ -28,7 +28,7 @@ const userSchema = new Schema({
         default: Date.now
     },
     cart: {
-        type: []
+        type: [Object]
     }
 })
 
