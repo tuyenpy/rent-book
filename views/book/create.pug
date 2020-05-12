@@ -6,12 +6,19 @@ block content
    .alert.alert-warning
     p=error
  form(action="/book/create" method="POST")
-  label(for="title")
-  br
-  input(type="text" id="title" name="title" value=title&&title)
-  br
-  label(for="description")
-  br
-  input(type="text" id="description" name="description" value=description&&description)
-  br
-  button(type="submit") Create
+  .form-group Title
+   label(for="title")
+   input.form-control(type="text" name="title" id="title" value=title&&title required)
+  .form-group Description
+   label(for="description")
+   textarea.form-control(type="text" name="description" id="description" value=description&&description required)
+  .form-group
+   label(for="author") Author
+   input.form-control(type="text" name="author" id="author" value=author&&author required)
+  .form-group
+   label(for="price") Price
+   input.form-control(type="text" name="price" id="price" value=price&&price required)
+  .form-group
+   label(for="image") Avatar
+   input.form-control-file(type="file" name="image" id="image" required)
+  button.btn.btn-primary(type="submit") Create

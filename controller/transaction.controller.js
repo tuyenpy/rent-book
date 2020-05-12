@@ -4,27 +4,32 @@ const Book = require('../model/book.model');
 
 //transaction index
 module.exports.index = async (req, res) => {
-    //Retrive user ID information
-    let userID = res.locals.user._id;
-    //Retrive transaction from Transaction with user ID
-    let transactions = await Transaction.find({ userID: userID })
-    //Retrive books from transaction.bookID
-    let books = await Promise.all(transactions.map(({ bookID }) => {
-        return Book.findById(bookID)
-    }));
-    let newTransactions = [];
-    for (let i = 0; i < transactions.length; i++) {
-        let { image, title, price } = books[i];
-        let { status, date } = transactions[i];
-        newTransactions.push({
-            image,
-            title,
-            price,
-            status,
-            date
-        });
+    let user = res.locals.user;
+    if (user) {
+        //Retrive user ID information
+        let userID = res.locals.user._id;
+        //Retrive transaction from Transaction with user ID
+        let transactions = await Transaction.find({ userID: userID })
+        //Retrive books from transaction.bookID
+        let books = await Promise.all(transactions.map(({ bookID }) => {
+            return Book.findById(bookID)
+        }));
+        let newTransactions = [];
+        for (let i = 0; i < transactions.length; i++) {
+            let { image, title, price } = books[i];
+            let { status, date } = transactions[i];
+            newTransactions.push({
+                image,
+                title,
+                price,
+                status,
+                date
+            });
+        }
+        res.render('./transaction/index', { newTransactions });
+        return;
     }
-    res.render('./transaction/index', { newTransactions })
+    res.render('./transaction/index');
 }
 
 //Create transaction

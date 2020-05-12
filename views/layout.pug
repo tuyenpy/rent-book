@@ -3,7 +3,7 @@ html
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
   body
     div.container
-      nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
         a.navbar-brand(href='/home')
           img(src="https://coders-x.com/images/logo@256.png", alt="", style="width: 150px; border-radius: 5px")
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
@@ -34,6 +34,7 @@ html
              a.dropdown-item(href='/user/profile') Profile
              if user.isAdmin
                a.dropdown-item(href='/book/create') Create Book
+               a.dropdown-item(href='/user/transaction') Manage Transaction
              a.dropdown-item(href='/cart') Cart
              a.dropdown-item(href='/user/logout') Logout            
       block content

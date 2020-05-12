@@ -23,4 +23,13 @@ router.get('/profile', validate.auth, controller.profile);
 router.get('/profile/edit', controller.edit);
 router.post('/profile/update', upload.single('avatar'), controller.update);
 
+//Transaction manager - Admin authencation
+router.get('/transaction', validate.adminAuth, controller.transaction);
+
+//Delete the paid Transaction - Admin authencation
+router.get('/transaction/deleteTransaction', validate.adminAuth, controller.deleteTransaction, controller.transaction);
+
+//Delete all Transaction - Admin authencation
+router.get('/transaction/deleteAll', validate.adminAuth, controller.deleteAll, controller.transaction);
+
 module.exports = router;

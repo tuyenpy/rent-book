@@ -35,25 +35,28 @@ module.exports.create = (req, res, next) => {
 module.exports.login = async (req, res, next) => {
     let errors = [];
     let { email, password } = req.body;
-    let user = await User.findOne({ email: email });
-
+    let user;
+    
     //email does not exist
     if (!email || !password) {
         errors.push("Please fill out all fields!");
         res.render('./user/login', { errors });
+        return;
     }
-
+    //Retrive user information
+    user = await User.findOne({ email: email });
     //email exist => user does not exist
-    if (!user.email) {
+    if (!user) {
         errors.push("Email or Password wrong!");
         res.render('./user/login', { errors });
+        return;
     }
     //user exist => Password wrong
     if (!comparePassword(password, user.password)) {
         errors.push("Password wrong!")
         res.render('./user/login', { errors });
     } else {
-        res.cookie('userID', user._id, {signed: true});
+        res.cookie('userID', user._id, { signed: true });
         next();
     }
 }
@@ -68,10 +71,29 @@ module.exports.auth = async (req, res, next) => {
         res.redirect('/user/login');
     }
     //userID exist
-    user = await User.findOne({_id: userID});
+    user = await User.findOne({ _id: userID });
     //user does not exist
-    if (!user.name) {
+    if (!user) {
         res.redirect('/user/login');
+    } else {
+        next();
+    }
+}
+
+//Validate admin authencation
+module.exports.adminAuth = async (req, res, next) => {
+    let userID = req.signedCookies.userID;
+    let user;
+
+    //userID does not exist
+    if (!userID) {
+        res.redirect('/user/login');
+    }
+    //userID exist
+    user = await User.findOne({ _id: userID });
+    //user does not exist
+    if (user && !user.isAdmin) {
+        res.redirect('/transaction');
     } else {
         next();
     }

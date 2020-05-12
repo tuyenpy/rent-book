@@ -8,6 +8,9 @@ block content
       th(scope='col') Price
       th(scope='col') Status
       th(scope='col') Date
+      th(scope='col') Username
+      if isAdmin
+       th(scope='col') Change Status
   tbody
     if newTransactions
      each transaction in newTransactions
@@ -21,3 +24,16 @@ block content
        else
         td Paid
        td=transaction.date
+       td=transaction.name
+       if isAdmin
+        td
+         if transaction.status
+          a.btn.btn-primary.disabled(href=`/user/transaction?q=${transaction._id}`) Accept pay
+         else
+          a.btn.btn-primary(href=`/user/transaction?q=${transaction._id}`) Accept pay
+ if isAdmin
+  .mb-5
+   a.btn.btn-primary(href='/user/transaction/deleteTransaction') Delete Paid
+   a.btn.btn-primary.ml-2(href='/user/transaction/deleteAll') Delete All
+
+        

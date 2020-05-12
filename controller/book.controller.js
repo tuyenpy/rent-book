@@ -51,7 +51,7 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
     let book = new Book(req.body);
     book.save()
-        .then(_ => console.log('Book created'))
+        .then()
         .catch(err => console.log(err));
     res.redirect('/book');
 }
