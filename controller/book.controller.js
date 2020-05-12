@@ -56,7 +56,7 @@ module.exports.postCreate = async (req, res) => {
     // let image = req.file.path.split('\\').slice(1).join('\\');
 
     //upload to cloudinary through server-side
-    let image = req.file && await uploadCloudinary(req.file.path);
+    let image = req.file && await uploadCloudinary(req.file.path, 'books');
 
     //create user
     let book = new Book({ title, description, author, price, image });

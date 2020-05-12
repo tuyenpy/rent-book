@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({dest: 'publics/upload/books'});
+const upload = multer({dest: 'publics/uploads/books'});
 const controller = require('../controller/book.controller');
 const validate = require('../validate/book.validate');
 
