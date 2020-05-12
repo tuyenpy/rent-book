@@ -29,10 +29,14 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 //This way. Poor performance, needs improvement in the future
 app.use(findUser);
 
-//index Hompage
+//render layout
 app.get('/', (req, res) => {
     let user = res.locals.user;
     res.render('./layout', { user });
+})
+//hompage
+app.get('/home', (req, res) => {
+    res.render('./index');
 })
 
 //user route

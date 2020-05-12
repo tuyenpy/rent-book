@@ -13,6 +13,9 @@ router.post('/create', upload.single('avatar'), validate.create, controller.post
 router.get('/login', controller.login);
 router.post('/login', validate.login, controller.postLogin);
 
+//logout
+router.get('/logout', controller.logout);
+
 //profile
 router.get('/profile', validate.auth, controller.profile);
 

@@ -38,6 +38,12 @@ module.exports.postLogin = (req, res) => {
     res.redirect('/user/profile');
 }
 
+//logout
+module.exports.logout = (req, res) => {
+    res.clearCookie('userID');
+    res.redirect('/home');
+}
+
 //profile
 module.exports.profile = (req, res) => {
     let user = res.locals.user;
