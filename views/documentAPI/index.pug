@@ -1,0 +1,228 @@
+extends ../layout.pug
+block content
+  h1 Simple Inventory API
+  .app-desc This is a simple API
+  .app-desc
+  | More information: 
+  a(href='https://helloreverb.com') https://helloreverb.com
+  .app-desc
+  | Contact Info: 
+  a(href='you@your-company.com') you@your-company.com
+  .app-desc Version: 1.0.0
+  .app-desc BasePath:/t22721/CoderX/1.0.0
+  .license-info Apache 2.0
+  .license-url http://www.apache.org/licenses/LICENSE-2.0.html
+  h2 Access
+  h2
+  a(name='__Methods') Methods
+  |   [ Jump to 
+  a(href='#__Models') Models
+  |  ]
+  h3 Table of Contents 
+  .method-summary
+  h4
+  a(href='#Admins') Admins
+  ul
+  li
+    a(href='#addInventory')
+      code
+        span.http-method post
+        |  /inventory
+  h4
+  a(href='#Developers') Developers
+  ul
+  li
+    a(href='#searchInventory')
+      code
+        span.http-method get
+        |  /inventory
+  h1
+  a(name='Admins') Admins
+  .method
+  a(name='addInventory')
+    .method-path
+      a.up(href='#__Methods') Up
+      pre.post.
+        
+    .method-summary
+      | adds an inventory item (
+      span.nickname addInventory
+      | )
+    .method-notes Adds an item to the system
+    h3.field-label Consumes
+    |     This API call consumes the following media types via the 
+    span.header Content-Type
+    |  request header:
+    ul
+      li
+        code application/json
+    h3.field-label Request body
+    .field-items
+      .param
+        | inventoryItem 
+        a(href='#InventoryItem') InventoryItem
+        |  (optional)
+      .param-desc
+        span.param-type Body Parameter
+        |  &mdash; Inventory item to add
+    // field-items
+    // Todo: process Response Object and its headers, schema, examples
+    h3.field-label Produces
+    |     This API call produces the following media types according to the 
+    span.header Accept
+    |  request header;
+    |     the media type will be conveyed by the 
+    span.header Content-Type
+    |  response header.
+    ul
+      li
+        code application/json
+    h3.field-label Responses
+    h4.field-label 201
+    |     item created
+    a(href='#')
+    h4.field-label 400
+    |     invalid input, object invalid
+    a(href='#')
+    h4.field-label 409
+    |     an existing item already exists
+    a(href='#')
+  // method
+  hr
+  h1
+  a(name='Developers') Developers
+  .method
+  a(name='searchInventory')
+    .method-path
+      a.up(href='#__Methods') Up
+      pre.get.
+        
+    .method-summary
+      | searches inventory (
+      span.nickname searchInventory
+      | )
+    .method-notes
+      | By passing in the appropriate options, you can search for
+      | available inventory in the system
+    h3.field-label Query parameters
+    .field-items
+      .param searchString (optional)
+      .param-desc
+        span.param-type Query Parameter
+        |  &mdash; pass an optional search string for
+        |         looking up inventory
+      .param skip (optional)
+      .param-desc
+        span.param-type Query Parameter
+        |  &mdash; number of records to skip for
+        |         pagination format: int32
+      .param limit (optional)
+      .param-desc
+        span.param-type Query Parameter
+        |  &mdash; maximum number of records to
+        |         return format: int32
+    // field-items
+    h3.field-label Return type
+    .return-type
+      | array[
+      a(href='#InventoryItem') InventoryItem
+      | ]
+    // Todo: process Response Object and its headers, schema, examples
+    h3.field-label Example data
+    .example-data-content-type Content-Type: application/json
+    pre.example.
+      
+    h3.field-label Produces
+    |     This API call produces the following media types according to the 
+    span.header Accept
+    |  request header;
+    |     the media type will be conveyed by the 
+    span.header Content-Type
+    |  response header.
+    ul
+      li
+        code application/json
+    h3.field-label Responses
+    h4.field-label 200
+    |     search results matching criteria
+    h4.field-label 400
+    |     bad input parameter
+    a(href='#')
+  // method
+  hr
+  h2
+  a(name='__Models') Models
+  |   [ Jump to 
+  a(href='#__Methods') Methods
+  |  ]
+  h3 Table of Contents
+  ol
+  li
+    a(href='#InventoryItem')
+      code InventoryItem
+      |  -
+  li
+    a(href='#Manufacturer')
+      code Manufacturer
+      |  -
+  .model
+  h3
+    a(name='InventoryItem')
+      code InventoryItem
+      |  -
+    a.up(href='#__Models') Up
+  .model-description
+  .field-items
+    .param id 
+    .param-desc
+      span.param-type
+        a(href='#UUID') UUID
+      |  format: uuid
+    .param-desc
+      span.param-type example: d290f1ee-6c54-4b01-90e6-d701748f0851
+    .param name 
+    .param-desc
+      span.param-type
+        a(href='#string') String
+    .param-desc
+      span.param-type example: Widget Adapter
+    .param releaseDate 
+    .param-desc
+      span.param-type
+        a(href='#DateTime') Date
+      |  format: date-time
+    .param-desc
+      span.param-type example: 2016-08-29T09:12:33.001Z
+    .param manufacturer 
+    .param-desc
+      span.param-type
+        a(href='#Manufacturer') Manufacturer
+  // field-items
+  .model
+  h3
+    a(name='Manufacturer')
+      code Manufacturer
+      |  -
+    a.up(href='#__Models') Up
+  .model-description
+  .field-items
+    .param name 
+    .param-desc
+      span.param-type
+        a(href='#string') String
+    .param-desc
+      span.param-type example: ACME Corporation
+    .param homePage (optional)
+    .param-desc
+      span.param-type
+        a(href='#string') String
+      |  format: url
+    .param-desc
+      span.param-type example: https://www.acme-corp.com
+    .param phone (optional)
+    .param-desc
+      span.param-type
+        a(href='#string') String
+    .param-desc
+      span.param-type example: 408-867-5309
+  // field-items

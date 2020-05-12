@@ -18,6 +18,7 @@ module.exports.index = async (req, res) => {
     //Retrieve data from the books collection
     // let books = await Book.find();
     if (search) {
+        //If have search query
         books = await Book.find({$or: [
             {
                 title: search
@@ -26,6 +27,7 @@ module.exports.index = async (req, res) => {
             }
         ]});
     } else {
+        //If have not search query
         books = await Book.find();
     }
     //Number of items on the page

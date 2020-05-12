@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports.api = (req, res) => {
-    res.send('Document API');
+    res.render('./documentAPI/index');
 }

@@ -11,6 +11,7 @@ block content
          p.card-text=book.description
          p=book.author
          p=book.price
+       .card-footer  
          a.btn.btn-primary(href=`/book?addtocart=${book._id}`) Add to cart
  nav(aria-label='Page navigation example')
   - var n = 1;
