@@ -15,12 +15,14 @@ html
               a.nav-link(href='/book') Book
             li.nav-item.active
               a.nav-link(href='/book/create') Create Book
+            li.nav-item.active
+              a.nav-link(href='/transaction') Transaction
             li.nav-item  
               a.nav-link(href='/user/login') Login       
             li.nav-item  
               a.nav-link(href='/user/create') Sign up       
           form.form-inline.my-2.my-lg-0
-            input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
+            input.form-control.mr-sm-2(type='search', name="search", placeholder='Search', aria-label='Search')
             button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
           .dropdown
            span#dropdownMenuButton(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')

@@ -1,23 +1,25 @@
 extends ../layout.pug
 block content
- a.btn.btn-primary(href="/cart?q=reset") Delete all books
- table.table.mt-5
+ table.table.mt-5.mb-5
   thead
     tr
-      th(scope='col') #
       th(scope='col') Image
       th(scope='col') Title
       th(scope='col') Description
       th(scope='col') Author
       th(scope='col') Price
+      th(scope='col') Amount
+      th(scope='col') Total
   tbody
     if books
      each book in books
       tr
-       th(scope='row')=book._id
        td
         img(src=book.image, alt="", style="width: 50px; height: 50px")
        td=book.title
        td=book.description
        td=book.author
        td=book.price
+ a.btn.btn-primary(href="/cart?q=reset") Delete all books
+ a.btn.btn-primary.ml-2(href="/transaction/create") Rent book
+

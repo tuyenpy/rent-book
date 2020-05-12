@@ -39,6 +39,7 @@ app.get('/', (req, res) => {
 app.use('/user', require('./route/user.route'));
 app.use('/book', require('./route/book.route'));
 app.use('/cart', require('./route/cart.route'));
+app.use('/transaction', require('./route/transaction.route'));
 
 
 //connect to Cluster MongoDB Atlas
