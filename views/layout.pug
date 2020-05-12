@@ -27,7 +27,7 @@ html
                 a.nav-link(href='/user/create') Sign up       
           else
            .dropdown
-            span#dropdownMenuButton(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            span#dropdownMenuButton(data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
              img(src=user.avatar, alt="", style="width: 40px; height: 40px; border-radius: 50%")
              span.badge.badge-danger=user.cart.length
             .dropdown-menu(aria-labelledby='dropdownMenuButton')

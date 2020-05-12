@@ -5,20 +5,20 @@ block content
   each error in errors
    .alert.alert-warning
     p=error
- form(action="/book/create" method="POST")
+ form(action="/book/create" method="POST" enctype="multipart/form-data")
   .form-group Title
    label(for="title")
-   input.form-control(type="text" name="title" id="title" value=title&&title required)
+   input.form-control(type="text" name="title" id="title" value=title&&title)
   .form-group Description
    label(for="description")
-   textarea.form-control(type="text" name="description" id="description" value=description&&description required)
+   textarea.form-control(type="text" name="description" id="description" value=description&&description)
   .form-group
    label(for="author") Author
-   input.form-control(type="text" name="author" id="author" value=author&&author required)
+   input.form-control(type="text" name="author" id="author" value=author&&author)
   .form-group
    label(for="price") Price
-   input.form-control(type="text" name="price" id="price" value=price&&price required)
+   input.form-control(type="text" name="price" id="price" value=price&&price)
   .form-group
    label(for="image") Avatar
-   input.form-control-file(type="file" name="image" id="image" required)
+   input.form-control-file(type="file" name="image" id="image")
   button.btn.btn-primary(type="submit") Create

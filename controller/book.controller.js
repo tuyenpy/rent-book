@@ -1,5 +1,6 @@
 const User = require('../model/user.model');
 const Book = require('../model/book.model');
+const uploadCloudinary = require('../config/uploadCloudinary');
 
 
 //book index
@@ -48,10 +49,21 @@ module.exports.create = (req, res) => {
     res.render('./book/create');
 }
 
-module.exports.postCreate = (req, res) => {
-    let book = new Book(req.body);
+module.exports.postCreate = async (req, res) => {
+    let { title, description, author, price } = req.body;
+
+    // upload to server-side
+    // let image = req.file.path.split('\\').slice(1).join('\\');
+
+    //upload to cloudinary through server-side
+    let image = req.file && await uploadCloudinary(req.file.path);
+
+    //create user
+    let book = new Book({ title, description, author, price, image });
+
     book.save()
         .then()
-        .catch(err => console.log(err));
+        .catch(({ message }) => console.log(message));
+
     res.redirect('/book');
 }
