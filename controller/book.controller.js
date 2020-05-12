@@ -5,16 +5,29 @@ const uploadCloudinary = require('../config/uploadCloudinary');
 
 //book index
 module.exports.index = async (req, res) => {
+    //Search -> Retrive query infomation
+    let search = req.query.search;
     //The book will add to the cart
-    let book;
+    let book, books;
     //If the user adds to the cart
     let bookID = req.query.addtocart;
     //Retrieve user information
     let user = res.locals.user;
     //What page query
     let page = req.query.page || 1;
-    //Retrieve data from the book collection
-    let books = await Book.find();
+    //Retrieve data from the books collection
+    // let books = await Book.find();
+    if (search) {
+        books = await Book.find({$or: [
+            {
+                title: search
+            }, {
+                description: search
+            }
+        ]});
+    } else {
+        books = await Book.find();
+    }
     //Number of items on the page
     let perPage = 6;
     // total page
@@ -23,10 +36,11 @@ module.exports.index = async (req, res) => {
     let n = (page - 1) * perPage;
     //Ending at item -1
     let m = page * perPage;
-    //Get information about the book
+    //Add to cart -> Get information about the book
     book = bookID && await Book.findOne({ _id: bookID });
     //If the existing book_id is added to the cart
     if (book) {
+        //Add to cart
         user.cart.push(book._id);
         User.findOneAndUpdate({
             _id: user._id
