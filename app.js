@@ -5,6 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,6 +15,9 @@ mongoose.set('useFindAndModify', false);
 //Pug - set template engine
 app.set('view engine', 'pug');
 app.set('views', './views');
+
+//use CORS
+app.use(cors());
 
 //cookie-parser
 app.use(cookieParser(process.env.COOKIE_SECRET));
