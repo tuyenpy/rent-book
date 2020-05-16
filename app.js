@@ -39,12 +39,16 @@ app.get('/home', (req, res) => {
     res.render('./index');
 })
 
-//user route
+//route
 app.use('/user', require('./route/user.route'));
 app.use('/book', require('./route/book.route'));
 app.use('/cart', require('./route/cart.route'));
 app.use('/transaction', require('./route/transaction.route'));
 app.use('/document', require('./route/document.route'));
+
+//route api
+app.use('/api/book', require('./api/route/book.route'));
+
 
 
 //connect to Cluster MongoDB Atlas
