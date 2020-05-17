@@ -52,6 +52,7 @@ app.use('/document', require('./route/document.route'));
 
 //route api
 app.use('/api/book', require('./api/route/book.route'));
+app.use('/api/post', require('./api/route/post.route'));
 
 
 
