@@ -26,5 +26,5 @@ module.exports.postCreate = async (req, res) => {
         .then()
         .catch(({ message }) => console.log(message));
 
-    res.redirect('/');
+    res.json(user);
 }
