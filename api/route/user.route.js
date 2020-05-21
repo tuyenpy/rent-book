@@ -6,4 +6,4 @@ const controller = require('../controller/user.controller');
 router.post('/create', controller.postCreate);
 
 
-module.export = router;
+module.exports = router;
