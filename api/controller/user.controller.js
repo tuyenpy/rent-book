@@ -20,3 +20,9 @@ module.exports.postCreate = async (req, res) => {
 
     res.json(user);
 }
+
+//profile
+module.exports.profile = (req, res) => {
+    let user = res.locals.user;
+    res.json(user);
+}
