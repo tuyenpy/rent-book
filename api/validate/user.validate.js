@@ -56,7 +56,7 @@ module.exports.login = async (req, res, next) => {
         errors.push("Password wrong!")
         res.render('./user/login', { errors });
     } else {
-        res.cookie('userID', user._id, { signed: true });
+        res.locals.user = user;
         next();
     }
 }

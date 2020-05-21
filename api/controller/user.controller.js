@@ -26,3 +26,9 @@ module.exports.profile = (req, res) => {
     let user = res.locals.user;
     res.json(user);
 }
+
+//login
+module.exports.login = (req, res) => {
+    let user = res.locals.user;
+    res.json(user);
+}
