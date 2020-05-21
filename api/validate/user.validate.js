@@ -63,7 +63,7 @@ module.exports.login = async (req, res, next) => {
 
 //validate user authencation
 module.exports.auth = async (req, res, next) => {
-    let { userID } = req.body;
+    let userID = req.query.userID;
     let user;
 
     //userID exist
