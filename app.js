@@ -56,6 +56,7 @@ app.use('/api/post', require('./api/route/post.route'));
 
 
 
+
 //connect to Cluster MongoDB Atlas
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
