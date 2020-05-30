@@ -10,7 +10,6 @@ const Book = require('../../model/book.model');
 //book index
 router.get('/', controller.index);
 //create book
-router.get('/create', controller.create);
 router.post('/create', upload.single('image'), validate.create, controller.postCreate);
 
 //delete all book

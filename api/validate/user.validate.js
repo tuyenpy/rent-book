@@ -26,7 +26,7 @@ module.exports.create = (req, res, next) => {
 
     //display errors for user
     if (errors.length > 0) {
-        res.render('./user/create', { errors });
+        res.json(errors);
     } else {
         next();
     }
@@ -40,7 +40,7 @@ module.exports.login = async (req, res, next) => {
     //email does not exist
     if (!email || !password) {
         errors.push("Please fill out all fields!");
-        res.render('./user/login', { errors });
+        res.json(errors);
         return;
     }
     //Retrive user information
@@ -48,13 +48,13 @@ module.exports.login = async (req, res, next) => {
     //email exist => user does not exist
     if (!user) {
         errors.push("Email or Password wrong!");
-        res.render('./user/login', { errors });
+        res.json(errors);
         return;
     }
     //user exist => Password wrong
     if (!comparePassword(password, user.password)) {
         errors.push("Password wrong!")
-        res.render('./user/login', { errors });
+        res.json(errors);
     } else {
         res.locals.user = user;
         next();
@@ -70,7 +70,7 @@ module.exports.auth = async (req, res, next) => {
     user = await User.findOne({ _id: userID });
     //user does not exist
     if (!user) {
-        res.redirect('/user/login');
+        res.json();
     } else {
         res.locals.user = user;
         next();

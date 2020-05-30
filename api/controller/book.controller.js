@@ -54,27 +54,11 @@ module.exports.index = async (req, res) => {
             .then()
             .catch(err => console.log(err))
     }
-    // res.render('./book/index', {
-    //     books: books.slice(n, m),
-    //     numPage: numPage,
-    //     page: parseInt(page)
-    // });
-    console.log(req.body);
     res.json(books);
 }
 //create book
-module.exports.create = (req, res) => {
-    res.render('./book/create');
-}
-
 module.exports.postCreate = async (req, res) => {
-    let { title, description, author, price } = req.body;
-
-    // upload to server-side
-    // let image = req.file.path.split('\\').slice(1).join('\\');
-
-    //upload to cloudinary through server-side
-    let image = req.file && await uploadCloudinary(req.file.path, 'books');
+    let { title, description, author, price, image } = req.body;
 
     //create user
     let book = new Book({ title, description, author, price, image });
